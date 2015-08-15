@@ -279,7 +279,7 @@ blocklist.serp.addBlockListNotification_ = function() {
  */
 blocklist.serp.showBlockedResults_ = function() {
   var blockedResultList = document.querySelectorAll(
-      'li.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
+      'div.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
   for (var i = 0; i < blockedResultList.length; i++) {
     blockedResultList[i].setAttribute('style',
                                      blocklist.serp.BLOCKED_VISIBLE_STYLE);
@@ -459,7 +459,7 @@ blocklist.serp.findBlockPatternForHost_ = function(hostName) {
  */
 blocklist.serp.hideSearchResults = function() {
   var searchResultList = document.querySelectorAll(
-      'li.' + blocklist.serp.SEARCH_RESULT_CLASS);
+      'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
   for (var i = 0; i < searchResultList.length; i++) {
     var searchResult = searchResultList[i];
     var matchedPattern = blocklist.serp.findBlockPatternForHost_(
@@ -520,9 +520,9 @@ blocklist.serp.modifySearchResults_ = function() {
     blocklist.serp.hideSearchResults();
   }
   var searchResultList = document.querySelectorAll(
-      'li.' + blocklist.serp.SEARCH_RESULT_CLASS);
+      'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
   var processedSearchResultList = document.querySelectorAll(
-      'li.' + blocklist.serp.PERSONAL_BLOCKLIST_CLASS);
+      'div.' + blocklist.serp.PERSONAL_BLOCKLIST_CLASS);
 
   // Add blocklist links to search results until all have been processed.
   if (blocklist.serp.needsRefresh ||
@@ -535,7 +535,7 @@ blocklist.serp.modifySearchResults_ = function() {
     var notificationDiv = document.querySelector(
         'div#' + blocklist.serp.NOTIFICATION_DIV_ID);
     var blockedResults = document.querySelectorAll(
-        'li.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
+        'div.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
 
     if (blockedResults.length > 0) {
       if (!notificationDiv) {
@@ -581,7 +581,7 @@ blocklist.serp.handleDeleteFromBlocklistResponse = function(response) {
   if (response.success) {
     // Reset blocked results and refresh.
     var searchResultList = document.querySelectorAll(
-        'li.' + blocklist.serp.SEARCH_RESULT_CLASS);
+        'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
     for (var i = 0; i < searchResultList.length; i++) {
       var pattern = blocklist.serp.parseDomainFromSearchResult_(
           searchResultList[i]);
