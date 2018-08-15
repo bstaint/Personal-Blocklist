@@ -63,7 +63,7 @@ blocklist.serp.SEARCH_RESULT_LOWER_LINKS_CLASS = 'gl';
  * Class that contains the cite tag on Google SERP.
  * @type {string}
  */
-blocklist.serp.SEARCH_RESULT_CITE_DIV_CLASS = 'kv';
+blocklist.serp.SEARCH_RESULT_CITE_DIV_CLASS = 'f';
 
 /**
  * Class of the short (snippet-less) search results links on Google SERP.
@@ -75,7 +75,7 @@ blocklist.serp.SEARCH_RESULT_SHORT_LINKS_CLASS = 'vshid';
  * Class of lower links span for definition-like results (e.g. query "viagra").
  * @type {string}
  */
-blocklist.serp.DEFINITION_RESULT_LOWER_LINKS_CLASS = 'a';
+blocklist.serp.DEFINITION_RESULT_LOWER_LINKS_CLASS = 'st';
 
 /**
  * Class of book search result table cell, used to identify book search results.
