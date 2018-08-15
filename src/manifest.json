@@ -20,8 +20,8 @@
    },
    //"key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDizUWFHhak8Ha7ZQvXivaQ5/85D1BwGsBzGZK5sk8XFWrpGxEFHXeMTUNC1vWqDCwapWJ+ywzg9RSn81jvempXD3GZ4I8fDG5thS91m0PQjxLlQmBwwLUJCFW9l6VF76RWYF/T1ZI9hb9rm0DRGWCFyLGnML7YOBict8Ru4KSkJQIDAQAB",
    "manifest_version": 2,
-   "name": "Personal Blocklist (modify by bstaint)",
+   "name": "Personal Blocklist Mod (by Google)",
    "permissions": [ "tabs", "management", "http://www.google.com/*" ],
-   //"update_url": "https://clients2.google.com/service/update2/crx",
+   "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "2.6.1"
 }

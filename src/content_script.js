@@ -12,6 +12,12 @@
 blocklist.serp = {};
 
 /**
+ * List of the search results tags on Google SERP.
+ * @type {[string]}
+ */
+blocklist.serp.SEARCH_RESULT_TAGS = ['li', 'div'];
+
+/**
  * Class of the search results on Google SERP.
  * @type {string}
  */
@@ -273,13 +279,27 @@ blocklist.serp.addBlockListNotification_ = function() {
                                             searchResultBlock.nextSibling);
 };
 
+
+/**
+ * Returns a list of search result nodes that have a specified CSS class name.
+ * @param {string} className Name of the CSS class.
+ * @return {!NodeList} list of search result nodes.
+ * @private
+ */
+blocklist.serp.getSearchResultNodes_ = function(className) {
+  var selector = blocklist.serp.SEARCH_RESULT_TAGS.map(function(tagName) {
+    return tagName + '.' + className;
+  }).join(', ');
+  return document.querySelectorAll(selector);
+};
+
 /**
  * Makes blocked search results visible again.
  * @private
  */
 blocklist.serp.showBlockedResults_ = function() {
-  var blockedResultList = document.querySelectorAll(
-      'div.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
+  var blockedResultList = blocklist.serp.getSearchResultNodes_(
+      blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
   for (var i = 0; i < blockedResultList.length; i++) {
     blockedResultList[i].setAttribute('style',
                                      blocklist.serp.BLOCKED_VISIBLE_STYLE);
@@ -458,8 +478,8 @@ blocklist.serp.findBlockPatternForHost_ = function(hostName) {
  * Removes all search results that match the blocklist.
  */
 blocklist.serp.hideSearchResults = function() {
-  var searchResultList = document.querySelectorAll(
-      'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
+  var searchResultList = blocklist.serp.getSearchResultNodes_(
+      blocklist.serp.SEARCH_RESULT_CLASS);
   for (var i = 0; i < searchResultList.length; i++) {
     var searchResult = searchResultList[i];
     var matchedPattern = blocklist.serp.findBlockPatternForHost_(
@@ -519,10 +539,10 @@ blocklist.serp.modifySearchResults_ = function() {
   if (blocklist.serp.blocklist.length > 0 || blocklist.serp.needsRefresh) {
     blocklist.serp.hideSearchResults();
   }
-  var searchResultList = document.querySelectorAll(
-      'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
-  var processedSearchResultList = document.querySelectorAll(
-      'div.' + blocklist.serp.PERSONAL_BLOCKLIST_CLASS);
+  var searchResultList = blocklist.serp.getSearchResultNodes_(
+      blocklist.serp.SEARCH_RESULT_CLASS);
+  var processedSearchResultList = blocklist.serp.getSearchResultNodes_(
+      blocklist.serp.PERSONAL_BLOCKLIST_CLASS);
 
   // Add blocklist links to search results until all have been processed.
   if (blocklist.serp.needsRefresh ||
@@ -534,8 +554,8 @@ blocklist.serp.modifySearchResults_ = function() {
     // Add/hide/show notification for removed results.
     var notificationDiv = document.querySelector(
         'div#' + blocklist.serp.NOTIFICATION_DIV_ID);
-    var blockedResults = document.querySelectorAll(
-        'div.' + blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
+    var blockedResults = blocklist.serp.getSearchResultNodes_(
+        blocklist.serp.BLOCKED_SEARCH_RESULT_CLASS);
 
     if (blockedResults.length > 0) {
       if (!notificationDiv) {
@@ -580,8 +600,8 @@ blocklist.serp.handleAddToBlocklistResponse = function(response) {
 blocklist.serp.handleDeleteFromBlocklistResponse = function(response) {
   if (response.success) {
     // Reset blocked results and refresh.
-    var searchResultList = document.querySelectorAll(
-        'div.' + blocklist.serp.SEARCH_RESULT_CLASS);
+    var searchResultList = blocklist.serp.getSearchResultNodes_(
+        blocklist.serp.SEARCH_RESULT_CLASS);
     for (var i = 0; i < searchResultList.length; i++) {
       var pattern = blocklist.serp.parseDomainFromSearchResult_(
           searchResultList[i]);
