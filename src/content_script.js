@@ -11,6 +11,16 @@
  */
 blocklist.serp = {};
 
+blocklist.serp.STYLE = `
+.blockLink {
+  opacity: 0;
+  height: 0px;
+}
+.blockLink:hover {
+  opacity: 1;
+}
+`;
+
 /**
  * List of the search results tags on Google SERP.
  * @type {[string]}
@@ -697,6 +707,13 @@ blocklist.serp.startBackgroundListeners = function() {
   });
 };
 
+blocklist.serp.applyStyle = function () {
+  let style = document.createElement('style');
+  style.innerHTML = blocklist.serp.STYLE;
+  document.querySelector('head').appendChild(style);
+};
+
+blocklist.serp.applyStyle();
 blocklist.serp.getIsHttpsPage_();
 blocklist.serp.getEventId_();
 blocklist.serp.refreshBlocklist();

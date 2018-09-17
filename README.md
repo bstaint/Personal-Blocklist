@@ -1,6 +1,4 @@
 Personal-Blocklist
 ==================
 
-~~由于官方版本不可用，自己修复下。~~
-
-官方已经修复暂时用不到了。
+Fix bugs & optimize styles
