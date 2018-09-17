@@ -73,7 +73,7 @@ blocklist.serp.SEARCH_RESULT_LOWER_LINKS_CLASS = 'gl';
  * Class that contains the cite tag on Google SERP.
  * @type {string}
  */
-blocklist.serp.SEARCH_RESULT_CITE_DIV_CLASS = 'f';
+blocklist.serp.SEARCH_RESULT_CITE_DIV_CLASS = 'r';
 
 /**
  * Class of the short (snippet-less) search results links on Google SERP.
@@ -357,7 +357,7 @@ blocklist.serp.removeBlocklistPattern_ = function(pattern) {
  * @private
  */
 blocklist.serp.parseDomainFromSearchResult_ = function(searchResult) {
-  var searchResultAnchor = searchResult.querySelector('h3 > a');
+  var searchResultAnchor = searchResult.querySelector('div > a');
   if (searchResultAnchor === null) {
     return '';
   }
